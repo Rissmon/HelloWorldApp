@@ -22,7 +22,9 @@ jobs:
       - run:
           name: Distribute via Beta
           command: |
-               fastlane android qc
+               gem install bundler
+               bundle install
+               bundle exec fastlane android qc
 #           ./gradlew clean
 #           ./gradlew assembleRelease
 #           ./gradlew crashlyticsUploadDistributionRelease
