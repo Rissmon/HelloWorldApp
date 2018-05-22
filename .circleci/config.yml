@@ -24,7 +24,7 @@ jobs:
           command: |
                gem install bundler
                bundle install
-               fastlane android qc
+               bundle exec fastlane android qc
 #           ./gradlew clean
 #           ./gradlew assembleRelease
 #           ./gradlew crashlyticsUploadDistributionRelease
