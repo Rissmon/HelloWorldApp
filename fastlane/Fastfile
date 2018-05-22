@@ -1,0 +1,39 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+update_fastlane(nightly: true)
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :qc do
+    gradle(
+         task: 'assemble',
+         build_type: 'qcRelease'
+         )
+    crashlytics(
+    api_token: "5e5afc79b97d1f02bbeba030a55c0b12333b9687",
+    build_secret: "ee3639f5a3a9e9077252bf53afd943f257eaa882e8ec8e88203b87d81c796a00",
+    groups:"internal_test"
+    )
+
+  end
+
+end
